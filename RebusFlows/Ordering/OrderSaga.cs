@@ -1,4 +1,5 @@
 using Rebus.Bus;
+using Rebus.Handlers;
 using Rebus.Sagas;
 
 namespace cBrain.RebusFlows.Ordering;
@@ -10,12 +11,12 @@ public class SagaData : ISagaData
 }
 
 #pragma warning disable
-public class OrderSaga(IBus bus) : Saga<SagaData>
+public class OrderSaga(IBus bus) : 
+    Saga<SagaData>
 #pragma warning restore
 {
     protected override void CorrelateMessages(ICorrelationConfig<SagaData> config)
     {
-        
         throw new NotImplementedException();
     }
 }

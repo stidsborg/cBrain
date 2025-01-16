@@ -1,3 +1,4 @@
+using cBrain.Flows.Batch;
 using Cleipnir.Flows.AspNet;
 using Cleipnir.Flows.PostgresSql;
 using Cleipnir.ResilientFunctions.PostgreSQL;
@@ -28,6 +29,7 @@ builder.Services.AddRebus(configure =>
         .Transport(t => t.UseInMemoryTransport(new InMemNetwork(), "who cares"))
         .Timeouts(t => t.StoreInMemory())
 );
+builder.Services.AddBatchOrderFlows();
 
 var app = builder.Build();
 

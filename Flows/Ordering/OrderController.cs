@@ -11,7 +11,7 @@ public class OrderController(OrderFlows orderFlows, ILogger<OrderController> log
     public async Task<ActionResult> Post(Order order)
     {
         logger.LogInformation($"{order.OrderId.ToUpper()}: Order processing started");
-        await orderFlows.Schedule(order.OrderId, order).Completion();
+        await orderFlows.Schedule(order.OrderId, order).Completion(maxWait: TimeSpan.FromDays(1));
         logger.LogInformation($"{order.OrderId.ToUpper()}: Order processing completed");
         return Ok();
     }

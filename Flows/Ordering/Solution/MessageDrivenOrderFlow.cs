@@ -1,4 +1,4 @@
-﻿using cBrain.Flows.Ordering.Other;
+﻿using cBrain.Flows.Ordering.Clients;
 using Cleipnir.Flows;
 using Rebus.Bus;
 using Rebus.Transport;

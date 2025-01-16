@@ -1,4 +1,4 @@
-using cBrain.Flows.Ordering.Other;
+using cBrain.Flows.Ordering.Clients;
 using Rebus.Handlers;
 
 namespace cBrain.Flows.Ordering;
