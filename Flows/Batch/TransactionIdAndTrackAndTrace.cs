@@ -1,5 +1,5 @@
-using Cleipnir.Flows.Sample.MicrosoftOpen.Clients;
+using cBrain.Flows.Batch.Clients;
 
-namespace Cleipnir.Flows.Sample.MicrosoftOpen.Flows.Batch;
+namespace cBrain.Flows.Batch;
 
 public record TransactionIdAndTrackAndTrace(string OrderId, Guid TransactionId, TrackAndTrace TrackAndTraceNumber);

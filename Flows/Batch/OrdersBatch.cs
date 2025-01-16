@@ -1,3 +1,5 @@
-namespace Cleipnir.Flows.Sample.MicrosoftOpen.Flows.Batch;
+using cBrain.Flows.Ordering;
+
+namespace cBrain.Flows.Batch;
 
 public record OrdersBatch(string BatchId, List<Order> Orders);

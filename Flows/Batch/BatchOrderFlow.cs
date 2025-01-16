@@ -1,7 +1,9 @@
 using System.Diagnostics;
-using Cleipnir.Flows.Sample.MicrosoftOpen.Clients;
+using cBrain.Flows.Batch.Clients;
+using cBrain.Flows.Ordering;
+using Cleipnir.Flows;
 
-namespace Cleipnir.Flows.Sample.MicrosoftOpen.Flows.Batch;
+namespace cBrain.Flows.Batch;
 
 [GenerateFlows]
 public class BatchOrderFlow(
