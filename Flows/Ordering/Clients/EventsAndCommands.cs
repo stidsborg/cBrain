@@ -1,6 +1,8 @@
 ﻿namespace cBrain.Flows.Ordering.Clients;
 
 public record EventsAndCommands;
+public record OrderCreated(Order Order) : EventsAndCommands;
+
 public record OrderConfirmationEmailSent(string OrderId, Guid CustomerId) : EventsAndCommands;
 
 public record ReserveFunds(string OrderId, decimal Amount, Guid TransactionId, Guid CustomerId) : EventsAndCommands;
