@@ -12,6 +12,14 @@ public class OrderFlow(IBus bus, ILogger<OrderFlow> logger) : Flow<Order>
     {
         AmbientTransactionContext.SetCurrent(null); //rebus hack
         
+        /*
+         * Workflow:
+         * 1. ReserveFunds
+         * 2. Ship Products
+         * 3. Capture Funds
+         * 4. Send Order Confirmation Email
+         */
+        
         var transactionId = await Capture(Guid.NewGuid);
 
         await ReserveFunds(order, transactionId);
