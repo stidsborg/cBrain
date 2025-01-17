@@ -12,7 +12,6 @@ public class SagaData : ISagaData
     public Guid TransactionId { get; set; }
 }
 
-#pragma warning disable
 public class OrderSaga(IBus bus) : 
     Saga<SagaData>,
     IAmInitiatedBy<OrderCreated>,
@@ -20,7 +19,6 @@ public class OrderSaga(IBus bus) :
     IHandleMessages<ProductsShipped>,
     IHandleMessages<FundsCaptured>,
     IHandleMessages<OrderConfirmationEmailSent>
-#pragma warning restore
 {
     protected override void CorrelateMessages(ICorrelationConfig<SagaData> config)
     {
