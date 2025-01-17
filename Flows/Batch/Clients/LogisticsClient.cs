@@ -1,10 +1,8 @@
-﻿using Cleipnir.Flows.Sample.MicrosoftOpen.Clients;
-
-namespace cBrain.Flows.Batch.Clients;
+﻿namespace cBrain.Flows.Batch.Clients;
 
 public interface ILogisticsClient
 {
-    Task<TrackAndTrace> ShipProducts(Guid customerId, IEnumerable<Guid> productIds);
+    Task<string> ShipProducts(Guid customerId, IEnumerable<Guid> productIds);
     Task CancelShipment(TrackAndTrace trackAndTrace);
 }
 
@@ -12,11 +10,11 @@ public record TrackAndTrace(string Value);
 
 public class LogisticsClientStub(ILogger<LogisticsClientStub> logger) : ILogisticsClient
 {
-    public Task<TrackAndTrace> ShipProducts(Guid customerId, IEnumerable<Guid> productIds)
+    public Task<string> ShipProducts(Guid customerId, IEnumerable<Guid> productIds)
         => Task.Delay(ClientSettings.Delay).ContinueWith(_ =>
             {
                 logger.LogInformation("LOGISTICS_SERVER: Products shipped");
-                return new TrackAndTrace(Guid.NewGuid().ToString());
+                return Guid.NewGuid().ToString();
             }
         );
     
