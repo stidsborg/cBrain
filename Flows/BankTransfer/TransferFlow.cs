@@ -8,6 +8,8 @@ public class TransferFlow : Flow<Transfer>
 {
     public override async Task Run(Transfer transfer)
     {
+        await using var takenLock = await DistributedLock(transfer.FromAccount);
+        
         var availableFunds = await _bankCentralClient.GetAvailableFunds(transfer.FromAccount);
         if (availableFunds <= transfer.Amount)
             throw new InvalidOperationException("Insufficient funds on from account");

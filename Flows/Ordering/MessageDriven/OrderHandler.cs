@@ -1,10 +1,10 @@
-using cBrain.Flows.Ordering.Clients;
+using cBrain.Flows.Ordering.MessageDriven.Clients;
 using Rebus.Handlers;
 
-namespace cBrain.Flows.Ordering;
+namespace cBrain.Flows.Ordering.MessageDriven;
 
 public record DeferredMessage(string OrderId);
-public class OrderHandler(OrderFlows flows) : 
+public class OrderHandler(MessageDrivenOrderFlows flows) : 
     IHandleMessages<DeferredMessage>,
     IHandleMessages<FundsReserved>,
     IHandleMessages<FundsReservationFailed>,

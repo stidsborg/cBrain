@@ -1,9 +1,9 @@
-﻿using cBrain.Flows.Ordering.Clients;
+﻿using cBrain.Flows.Ordering.MessageDriven.Clients;
 using Cleipnir.Flows;
 using Rebus.Bus;
 using Rebus.Transport;
 
-namespace cBrain.Flows.Ordering.Solution;
+namespace cBrain.Flows.Ordering.MessageDriven.Solution;
 
 public class MessageDrivenOrderFlow(IBus bus) : Flow<Order>
 {

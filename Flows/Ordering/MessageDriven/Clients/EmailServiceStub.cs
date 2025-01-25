@@ -3,7 +3,7 @@ using Rebus.Bus;
 using Rebus.Handlers;
 using Rebus.Transport;
 
-namespace cBrain.Flows.Ordering.Clients;
+namespace cBrain.Flows.Ordering.MessageDriven.Clients;
 
 public class EmailServiceStub(EmailServiceFlows flows) : IHandleMessages<SendOrderConfirmationEmail>
 {

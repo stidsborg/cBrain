@@ -1,4 +1,4 @@
-namespace cBrain.Flows.Ordering;
+namespace cBrain.Flows.Ordering.MessageDriven;
 
 public class OrderProcessingException : Exception
 {

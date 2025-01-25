@@ -1,4 +1,5 @@
 using Cleipnir.Flows;
+using Cleipnir.ResilientFunctions.Reactive.Extensions;
 
 namespace cBrain.Flows.Invoice;
 
@@ -11,21 +12,24 @@ public class InvoiceFlow(ILogger<InvoiceFlow> logger) : Flow<CustomerNumber>
         var invoiceDate = await Capture(
             () => DateTime.UtcNow.ToFirstOfMonth().AddMonths(1) //.AddSeconds(5)
         );
-        
+
         while (true)
         {
-            await Delay(until: invoiceDate); //if past then just complete...
+            await Delay(invoiceDate);
             await Capture(() => SendInvoice(customerNumber, invoiceDate));
             invoiceDate = invoiceDate.AddMonths(1); //.AddSeconds(5)
         }
-
-        /* taming state-explosion
-        await Loop.Iterate(
-            initial: DateTime.Today,
-            next: prev => prev.AddMonths(1),
-            work: date => SendInvoice(customerNumber, date)
-        );*/
     }
+    
+    /*
+     * var relationShipTerminatedOption = await Messages
+           .TakeUntilTimeout(invoiceDate)
+           .OfType<CustomerRelationshipTerminated>()
+           .FirstOrNone();
+
+       if (relationShipTerminatedOption.HasValue)
+           return;
+     */
     
     private async Task SendInvoice(CustomerNumber customerNumber, DateTime invoiceDate)
     {
@@ -36,6 +40,7 @@ public class InvoiceFlow(ILogger<InvoiceFlow> logger) : Flow<CustomerNumber>
 
     private Task<decimal> CalculateInvoiceAmount(CustomerNumber customerNumber) => Task.FromResult(1.2M);
     private Task EmailInvoice(CustomerNumber customerNumber, DateTime invoiceDate, decimal invoiceAmount) => Task.CompletedTask;
+    private record CustomerRelationshipTerminated();
 }
 
 internal static class DateTimeExtensions 

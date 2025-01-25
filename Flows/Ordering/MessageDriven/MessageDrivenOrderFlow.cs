@@ -1,12 +1,12 @@
-﻿using cBrain.Flows.Ordering.Clients;
+﻿using cBrain.Flows.Ordering.MessageDriven.Clients;
 using Cleipnir.Flows;
 using Rebus.Bus;
 using Rebus.Transport;
 
-namespace cBrain.Flows.Ordering;
+namespace cBrain.Flows.Ordering.MessageDriven;
 
 [GenerateFlows]
-public class OrderFlow(IBus bus, ILogger<OrderFlow> logger) : Flow<Order>
+public class MessageDrivenOrderFlow(IBus bus, ILogger<MessageDrivenOrderFlow> logger) : Flow<Order>
 {
     public override async Task Run(Order order)
     {

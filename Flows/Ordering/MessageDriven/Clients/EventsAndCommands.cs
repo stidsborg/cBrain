@@ -1,4 +1,4 @@
-﻿namespace cBrain.Flows.Ordering.Clients;
+﻿namespace cBrain.Flows.Ordering.MessageDriven.Clients;
 
 public record EventsAndCommands;
 public record OrderConfirmationEmailSent(string OrderId, Guid CustomerId) : EventsAndCommands;
