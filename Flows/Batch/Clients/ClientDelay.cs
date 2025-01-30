@@ -1,4 +1,4 @@
-namespace Cleipnir.Flows.Sample.MicrosoftOpen.Clients;
+namespace cBrain.Flows.Batch.Clients;
 
 public static class ClientSettings
 {

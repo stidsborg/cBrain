@@ -1,6 +1,4 @@
-﻿using Cleipnir.Flows.Sample.MicrosoftOpen.Clients;
-
-namespace cBrain.Flows.Batch.Clients;
+﻿namespace cBrain.Flows.Batch.Clients;
 
 public interface IEmailClient
 {
