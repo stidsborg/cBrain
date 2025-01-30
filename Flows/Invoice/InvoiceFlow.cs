@@ -15,21 +15,14 @@ public class InvoiceFlow(ILogger<InvoiceFlow> logger) : Flow<CustomerNumber>
 
         while (true)
         {
-            await Delay(invoiceDate);
+            var option = await Message<CustomerRelationshipTerminated>(timesOutAt: invoiceDate);
+            if (option.HasValue)
+                return;
+            
             await Capture(() => SendInvoice(customerNumber, invoiceDate));
             invoiceDate = invoiceDate.AddMonths(1); //.AddSeconds(5)
         }
     }
-    
-    /*
-     * var relationShipTerminatedOption = await Messages
-           .TakeUntilTimeout(invoiceDate)
-           .OfType<CustomerRelationshipTerminated>()
-           .FirstOrNone();
-
-       if (relationShipTerminatedOption.HasValue)
-           return;
-     */
     
     private async Task SendInvoice(CustomerNumber customerNumber, DateTime invoiceDate)
     {
