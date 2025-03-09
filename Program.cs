@@ -1,5 +1,6 @@
 using cBrain.Flows.Batch;
 using cBrain.Flows.Ordering.Rpc;
+using cBrain.Flows.Outbox;
 using Cleipnir.Flows.AspNet;
 using Cleipnir.Flows.PostgresSql;
 using Cleipnir.ResilientFunctions.PostgreSQL;
@@ -32,6 +33,7 @@ builder.Services.AddRebus(configure =>
 );
 builder.Services.AddBatchOrderFlows();
 builder.Services.AddRpcOrderFlows();
+builder.Services.AddOutboxFlows();
 
 var app = builder.Build();
 
