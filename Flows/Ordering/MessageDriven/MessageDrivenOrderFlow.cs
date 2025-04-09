@@ -15,7 +15,7 @@ public class MessageDrivenOrderFlow(IBus bus, ILogger<MessageDrivenOrderFlow> lo
         var transactionId = await Capture(Guid.NewGuid);
 
         await ReserveFunds(order, transactionId);
-        await Message<FundsReserved>();
+        await Message<FundsReserved>(TimeSpan.FromMinutes(5));
         await Capture(() => logger.LogInformation($"{order.OrderId.ToUpper()}: FundsReserved"));
         
         await ShipProducts(order);

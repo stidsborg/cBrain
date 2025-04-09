@@ -8,9 +8,8 @@ public class InvoiceFlow(ILogger<InvoiceFlow> logger) : Flow<CustomerNumber>
 {
     public override async Task Run(CustomerNumber customerNumber)
     {
-        logger.LogInformation($"CUSTOMER_{customerNumber}: (Re)started flow");
         var invoiceDate = await Capture(
-            () => DateTime.UtcNow.ToFirstOfMonth().AddMonths(1) //.AddSeconds(5)
+            () => DateTime.UtcNow.ToFirstOfMonth().AddMonths(1) 
         );
 
         while (true)
@@ -20,7 +19,7 @@ public class InvoiceFlow(ILogger<InvoiceFlow> logger) : Flow<CustomerNumber>
                 return;
             
             await Capture(() => SendInvoice(customerNumber, invoiceDate));
-            invoiceDate = invoiceDate.AddMonths(1); //.AddSeconds(5)
+            invoiceDate = invoiceDate.AddMonths(1); 
         }
     }
     
